@@ -1,18 +1,22 @@
-
-
-1. **Setup MySQL Database**  
-   - Ensure MySQL is installed and running.  
-   - Create a database and an `Employee` table with columns `EmpID`, `Name`, and `Salary`.
-
-2. **Update Database Credentials**  
-   - Replace `your_database`, `your_username`, and `your_password` in the code with actual database credentials.
-
-3. **Add MySQL JDBC Driver**  
-   - Download and add `mysql-connector-java.jar` to your project’s classpath.
-
-4. **Compile and Run the Program**  
-   - Compile: `javac MySQLConnection.java`  
-   - Run: `java MySQLConnection`
-
-5. **Verify Output**  
-   - Ensure that employee records are displayed correctly from the database.
+import com.sun.source.tree.StatementTree; 
+import java.sql.*; 
+public class Main { 
+public static void main(String[] args) { 
+String url = "jdbc:mysql://localhost:3306/java"; 
+String user = "root"; 
+String password = "Ishika_1"; 
+try { 
+Connection conn = DriverManager.getConnection(url, user, password); 
+Statement s= conn.createStatement(); 
+ResultSet rs = s.executeQuery("SELECT * FROM users"); 
+while (rs.next()) { 
+System.out.println("ID: " + rs.getInt("idUsers") + ", Name: " + rs.getString("name")); 
+} 
+System.out.println("Connected to the database successfully!"); 
+conn.close(); 
+} catch (SQLException e) { 
+System.out.println("Connection failed!"); 
+e.printStackTrace(); 
+} 
+} 
+}
